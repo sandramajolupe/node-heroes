@@ -1,0 +1,16 @@
+{
+  "name": "expressbasic",
+  "version": "1.0.0",
+  "description": "Basic API using express and Mongo DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "Javier Sanchez",
+  "license": "ISC"
+}
