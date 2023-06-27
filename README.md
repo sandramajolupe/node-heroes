@@ -33,8 +33,8 @@ Recuerda que el archivo .env no debe incluirse en tu repositorio de código, esp
 Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más en línea.
 
 * [Quick Start](https://www.mongodb.com/docs/drivers/node/current/quick-start/#quick-start) 
-* [Download and Install] (https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/)
-* [Create a MongoDB Deployment] (https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-deployment/)
+* [Download and Install](https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/)
+* [Create a MongoDB Deployment](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-deployment/)
 *[Create a Connection String](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-connection-string/#create-a-connection-string)
 *[Connect to MongoDB](https://www.mongodb.com/docs/drivers/node/current/quick-start/connect-to-mongodb/)
 
