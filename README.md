@@ -16,10 +16,10 @@ npm install dotenv
 ```
 2. Crea un archivo .env en el directorio raíz de tu proyecto.
 
-3. Dentro de .env, define tus variables de entorno en PASSWORDDB = `12lkjefoaih1209`
+3. Dentro de .env, define tus variables de entorno por ejemplo:
 
 ```
-meter como es que llamo a la conexion = ejemplo conexion
+PASSWORDDB = `12lkjefoaih1209`
 ```
 4. En el archivo donde se van a usar las variables de entorno llamarlas usando 
 ```
