@@ -27,16 +27,17 @@ require('dotenv').config();
 ```
 Recuerda que el archivo .env no debe incluirse en tu repositorio de código, especialmente si contiene información sensible como claves de API o contraseñas. Asegúrate de agregarlo a tu archivo .gitignore para evitar que se publique accidentalmente.
 
-
 ## Documentación de MongoDB
 
 Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más en línea.
 
 * [Quick Start](https://www.mongodb.com/docs/drivers/node/current/quick-start/#quick-start) 
 * [Download and Install](https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/)
+
 * [Create a MongoDB Deployment](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-deployment/)
-*[Create a Connection String](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-connection-string/#create-a-connection-string)
-*[Connect to MongoDB](https://www.mongodb.com/docs/drivers/node/current/quick-start/connect-to-mongodb/)
+
+* [Create a Connection String](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-connection-string/#create-a-connection-string)
+* [Connect to MongoDB](https://www.mongodb.com/docs/drivers/node/current/quick-start/connect-to-mongodb/)
 
 * [Express Tutorial Part 3: Using a Database (with Mongoose)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#setting_up_the_mongodb_database)
 
@@ -49,6 +50,15 @@ Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más
 
 ## Documentación para los routers
 ## Documentación para los controllers
+
+* [Controller](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Book_list_page#controller) Solo mirar la parte del controlador
+### Algunas query de uso comun 
+* [Model.find()](https://mongoosejs.com/docs/api/model.html#Model.find())
+* [Model.findById()](https://mongoosejs.com/docs/api/model.html#Model.findById())
+* [Model.findByIdAndRemove()](https://mongoosejs.com/docs/api/model.html#Model.findByIdAndRemove())
+* [Model.findByIdAndUpdate()](https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate())
+* [Model.create()](https://mongoosejs.com/docs/api/model.html#Model.create())
+* [Model.deleteOne()](https://mongoosejs.com/docs/api/model.html#Model.deleteOne())
 
 ## Contacto
 
