@@ -35,7 +35,7 @@ Ahora vamos a crear un archivo llamado index.js
 touch index.js
 ```
 
-al final de esta seccion deben tener algo parecido a esto /br
+al final de esta seccion deben tener algo parecido a esto: 
 <img src="img/primeros_pasos.png" alt="estructura de carpetas y archivos al final primeros pasos">
 
 ## Hola Mundo
@@ -66,7 +66,7 @@ Como es usual si van al navegador a la direccion 127.0.0.1:3005 van a encontrar 
 
 ## Documentación de MongoDB
 
-Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más en línea.
+Van a crear la cuenta, esta es la documentación recomendada para MongoDB, aunque pueden encontrar más en línea.
 
 * [Quick Start](https://www.mongodb.com/docs/drivers/node/current/quick-start/#quick-start) 
 * [Download and Install](https://www.mongodb.com/docs/drivers/node/current/quick-start/download-and-install/)
@@ -91,7 +91,7 @@ npm install dotenv
 3. Dentro de .env, define tus variables de entorno por ejemplo:
 
 ```
-PASSWORDDB = `12lkjefoaih1209`
+MONGO_DB_URI = `12lkjefoaih1209`
 ```
 4. En el archivo en el que se vayan a utilizar las variables de entorno, se recomienda llamarlas de la siguiente manera:
 ```
@@ -99,8 +99,89 @@ require('dotenv').config();
 ```
 Recuerda que el archivo .env no debe incluirse en tu repositorio de código, especialmente si contiene información sensible como claves de API o contraseñas. Asegúrate de agregarlo a tu archivo .gitignore para evitar que se publique accidentalmente.
 
-## Documentación para los models
 
+
+## Modelos ORM y MongoDB
+Ahora que ya tenemos una cuenta y el link de conexion a la base de datos vamos a empezar con los modelos.
+
+
+Primero vamos a instalar en ORM, en este caso usaremos mongoose.
+```
+npm install mongoose
+```
+Ahora vamos a crear un archivo de configuracion 
+
+```
+touch mongo.js
+```
+El cual va a tener el siguiente codigo 
+```
+const mongoose = require('mongoose')
+
+const { MONGO_DB_URI, MONGO_DB_URI_TEST, NODE_ENV } = process.env
+
+const connectionString = NODE_ENV === 'test'
+  ? MONGO_DB_URI_TEST
+  : MONGO_DB_URI
+
+if (!connectionString) {
+  console.error('Recuerda que tienes que tener un archivo .env con las variables de entorno definidas y el MONGO_DB_URI que servirá de connection string. En las clases usamos MongoDB Atlas pero puedes usar cualquier base de datos de MongoDB (local incluso).')
+}
+
+// Conection a mongoDB
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => {
+    console.log('Database connected')
+  }).catch(err => {
+    console.log(err)
+  })
+
+process.on('uncaughtException', error => {
+  console.error(error)
+  mongoose.disconnect()
+})
+```
+
+ Como ya es usual crea una carpeta llamada models
+```
+mkdir models
+```
+Dentro de la carpeta models vamos a crear un archivo llamado author.js.js
+```
+touch models/author.js.js
+```
+y dentro de author.js.js vamos a poner el siguiente codigo.
+
+```
+const mongoose = require('mongoose')
+
+const Schema = mongoose.Schema
+const AuthorSchema = new Schema ({
+    first_name: {
+        type:String,
+        require: true,
+        maxLength:100
+    },
+    family_name:{
+        type:String,
+        require: true,
+        maxLength:100
+    },
+    date_of_birth: { type: Date },
+    date_of_death: { type: Date },
+})
+
+module.exports = mongoose.model(AuthorSchema)
+```
+Vamos a hacer lo mismo con los modelos de Book model, BookInstance model y Genre model.
+
+
+Usa como guia la [documentacion de mozzila de express.js](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#defining_the_locallibrary_schema)
+
+### Documentación para los models
 * [Express Tutorial Part 3: Using a Database (Defining and creating models)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#defining_and_creating_models)
 
 * [Mongoose Schemas (Defining your schema)](https://mongoosejs.com/docs/guide.html#definition)
