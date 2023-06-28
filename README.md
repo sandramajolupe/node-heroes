@@ -51,7 +51,7 @@ Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más
 ## Documentación para los controllers
 
 * [Controller](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Book_list_page#controller) Solo mirar la parte del controlador
-### Algunas query de uso comun 
+### Algunas query de uso común 
 * [Model.find()](https://mongoosejs.com/docs/api/model.html#Model.find())
 * [Model.findById()](https://mongoosejs.com/docs/api/model.html#Model.findById())
 * [Model.findByIdAndRemove()](https://mongoosejs.com/docs/api/model.html#Model.findByIdAndRemove())
