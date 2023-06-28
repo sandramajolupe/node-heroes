@@ -35,7 +35,7 @@ Ahora vamos a crear un archivo llamado index.js
 touch index.js
 ```
 
-al final de esta seccion deben tener algo parecido a esto
+al final de esta seccion deben tener algo parecido a esto /br
 <img src="img/primeros_pasos.png" alt="estructura de carpetas y archivos al final primeros pasos">
 
 ## Hola Mundo
