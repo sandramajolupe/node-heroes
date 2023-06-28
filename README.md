@@ -6,6 +6,60 @@
 
 Vamos a desarrollar una API conectada a MongoDB. El propósito de este repositorio es centralizar la documentación necesaria para construir una API utilizando Express, ya que a su formador no le agrada completamente la que está disponible en línea. Este tutorial incluirá enlaces a secciones específicas de la documentación existente, así como información adicional propia. Además, se planea proporcionar un video de apoyo para facilitar el proceso.
 
+## primeros pasos
+Recuerda debes tener instalado [Node.js](https://nodejs.org/en/download), despues crea y entra a la carpeta donde vas a guardar el proyecto. 
+```
+mkdir app
+cd app
+```
+Una vez dentro de la carpeta usa el siguiente comando para crear un archivo que contendra la informacion de configuracion del proyecto (recuerda personalizarla). Deja el punto de entrada como index.js
+```
+npm init
+```
+
+finalmente vamos a instalar express.js
+
+```
+npm install express
+```
+les debe aparecer un archivo package-lock.json y una carpeta node_modules, en este momento es buena idea crear el .gitignore para que no se suba esta ultima.
+```
+touch .gitignore
+```
+dentro poner
+```
+node_modules
+```
+
+## Hola Mundo
+Ahora vamos a crear un archivo llamado index.js
+```
+touch index.js
+```
+y dentro vamos a poner el siguiente codigo:
+```
+const express = require('express')
+
+const app = express()
+const port = (process.env.PORT || 3005)
+app.set('port', port)
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+```
+
+Para levantar el servidor vamos a correr el siguiente comando en una consola al nivel del index.js
+```
+node index.js
+```
+Como es usual si van al navegador a la direccion 127.0.0.1:3005 van a encontrar el hola mundo.
+
+
 ## Documentación de MongoDB
 
 Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más en línea.
