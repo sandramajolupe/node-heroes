@@ -17,7 +17,7 @@ Una vez dentro de la carpeta usa el siguiente comando para crear un archivo que 
 npm init
 ```
 
-finalmente vamos a instalar express.js
+Vamos a instalar express.js
 
 ```
 npm install express
@@ -30,13 +30,17 @@ dentro poner
 ```
 node_modules
 ```
-
-## Hola Mundo
 Ahora vamos a crear un archivo llamado index.js
 ```
 touch index.js
 ```
-y dentro vamos a poner el siguiente codigo:
+
+al final de esta seccion deben tener algo parecido a esto
+<img src="img/primeros_pasos.png" alt="estructura de carpetas y archivos al final primeros pasos">
+
+## Hola Mundo
+
+Dentro de index.js vamos a poner el siguiente codigo:
 ```
 const express = require('express')
 
