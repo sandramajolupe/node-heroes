@@ -4,8 +4,7 @@
 
 ## Objetivo
 
-Vamos a contruir una API conectada a MongoDB. La idea de este repositorio es concentrar la documentación para contruir una API en express ya que a su formador no le termina de gustar la que se encuentra en linea. Este tutorial va a tener enlaces a partes especificas de  documentación existente y otra propia. Tambien la idea es tener un video que sirva de apoyo.
-
+Vamos a desarrollar una API conectada a MongoDB. El propósito de este repositorio es centralizar la documentación necesaria para construir una API utilizando Express, ya que a su formador no le agrada completamente la que está disponible en línea. Este tutorial incluirá enlaces a secciones específicas de la documentación existente, así como información adicional propia. Además, se planea proporcionar un video de apoyo para facilitar el proceso.
 ## Variables de entorno
 
 Las variables de entorno son valores que se configuran en el sistema operativo y que pueden ser accedidos por las aplicaciones en tiempo de ejecución. En Node.js, puedes acceder a estas variables a través del objeto 'dotenv'.
@@ -21,7 +20,7 @@ npm install dotenv
 ```
 PASSWORDDB = `12lkjefoaih1209`
 ```
-4. En el archivo donde se van a usar las variables de entorno llamarlas usando 
+4. En el archivo en el que se vayan a utilizar las variables de entorno, se recomienda llamarlas de la siguiente manera:
 ```
 require('dotenv').config();
 ```
@@ -62,7 +61,7 @@ Esta es la documentación recomendada para MongoDB, aunque pueden encontrar más
 
 ## Contacto
 
-Si tienes alguna pregunta o sugerencia o quieres el workbook para desarrollar este proyecto, no dudes en contactarme en [jsanchez@educamas.com.co](jsanchez@educamas.com.co).
+Si tienes alguna pregunta, sugerencia o deseas obtener el workbook para desarrollar este proyecto, no dudes en contactarme a través de: [jsanchez@educamas.com.co](jsanchez@educamas.com.co).
 
 
 # await
