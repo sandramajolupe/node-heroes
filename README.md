@@ -165,8 +165,8 @@ Usa como guia la [documentacion de mozzila de express.js](https://developer.mozi
 
 * [Mongoose Schemas (Defining your schema)](https://mongoosejs.com/docs/guide.html#definition)
 
-## Crear un Author 
-Como es usual en nuestra forma de trabajo vamos a realizar el controlador para [crear](https://mongoosejs.com/docs/api/model.html#Model.create()) un author.
+## Crear autor. 
+Como es habitual en nuestra forma de trabajo, vamos a crear el controlador para la [creación](https://mongoosejs.com/docs/api/model.html#Model.create()) de un autor.
 
 ```
 mkdir controllers
@@ -193,13 +193,13 @@ const controllerAuthor = {
 
 module.exports = controllerAuthor
 ```
-vamos a probar la funcion desde el index.js, por lo tanto agregamos el siguiente codigo en las importaciones 
+Vamos a probar la función desde el archivo index.js, por lo tanto, agregaremos el siguiente código a las importaciones.
 
 ```
 const controllerAuthor = require('./controllers/author')
 
 ```
-y despues de la ruta del hola mundo lo siguiente:
+Después de la ruta del 'Hola Mundo', puedes agregar el siguiente código en el archivo index.js:
 ```
 router.post('/api/author/create',controllerAuthor.create)
 ```
@@ -223,7 +223,7 @@ router.post('/create',controllerAuthor.create)
 
 module.exports = router
 ```
-Y en index.js quitamos lo que pusimos para la prueba anterior y ponemos lo siguiente:
+Y en el archivo index.js, eliminamos lo que agregamos para la prueba anterior y colocamos el siguiente código:
 ```
 const authorRoutes = require('./routes/author')
 
@@ -260,6 +260,89 @@ app.listen(port, () => {
 Volvemos a usar postman y el resultado debe ser el mismo:
 <img src="img/postmanPostEndPoint.png" alt="postman Post EndPoint">
 
+Ahora que ya tenemos ese endpoint, completamos el CRUD. El archivo controllers/author.js podría tener una estructura similar a esta:
+
+```
+const Author = require('../models/author')
+
+const controllerAuthor = {
+    create: async (req,res) =>{
+        try{
+            const first_name = req.body.first_name
+            const family_name = req.body.family_name
+            await Author.create({
+                first_name:first_name, 
+                family_name:family_name
+            })
+            res.json({msg:'Created'})
+        } catch(err){
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    getAuthors: async (req,res) =>{
+        try{
+            const authors = await Author.find({})
+            res.json(authors)
+        }catch(err){
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    getAuthorForId: async (req,res) =>{
+        try{
+            const {id} = req.params
+            const author = await Author.findById(id)
+            res.json(author)
+        }catch(err){
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    updateAuthor: async (req,res) =>{
+        try{
+            const {id} = req.params
+            const first_name = req.body.first_name
+            const family_name = req.body.family_name
+            await Author.findByIdAndUpdate(id,{
+                first_name:first_name, 
+                family_name:family_name
+            })
+            res.json({msg:'Update'})
+        }catch(err){
+            console.error(err)
+            return res.status(500).json({msg:err.message})            
+        }
+    },
+    deleteAuthor:async (req,res)=>{
+        try {
+            const {id} = req.params
+            await Author.findByIdAndDelete(id)
+            res.json({msg:'Delete'})     
+        } catch (err) {
+            console.error(err)
+            return res.status(500).json({msg:err.message})
+        }
+    }
+
+}
+
+module.exports = controllerAuthor
+```
+Mientas que las rutas deben quedar algo asi router/author.js:
+```
+const express =require('express')
+
+const controllerAuthor =require('../controllers/author')
+
+const router = express.Router()
+
+
+router.get('/',controllerAuthor.getAuthors)
+router.get('/:id',controllerAuthor.getAuthorForId)
+router.post('/create',controllerAuthor.create)
+router.patch('/update/:id',controllerAuthor.updateAuthor)
+router.delete('/delete/:id',controllerAuthor.deleteAuthor)
+
+module.exports = router
+```
 ### Documentación para los controllers
 
 * [Controller](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Book_list_page#controller) Solo mirar la parte del controlador
