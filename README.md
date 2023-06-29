@@ -34,6 +34,10 @@ Ahora vamos a crear un archivo llamado index.js
 ```
 touch index.js
 ```
+Vamos  a instalar nodemon para que nos recarge el servidor siempre que realicemos cambios 
+```
+npm install nodemon --develop
+```
 
 al final de esta seccion deben tener algo parecido a esto: 
 <img src="img/primeros_pasos.png" alt="estructura de carpetas y archivos al final primeros pasos">
@@ -109,41 +113,18 @@ Primero vamos a instalar en ORM, en este caso usaremos mongoose.
 ```
 npm install mongoose
 ```
-Ahora vamos a crear un archivo de configuracion 
-
-```
-touch mongo.js
-```
-El cual va a tener el siguiente codigo 
+Ahora vamos a crear la configuración dentro de index.js. La cual sera el siguiente codigo 
 ```
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-const { MONGO_DB_URI, MONGO_DB_URI_TEST, NODE_ENV } = process.env
-
-const connectionString = NODE_ENV === 'test'
-  ? MONGO_DB_URI_TEST
-  : MONGO_DB_URI
-
-if (!connectionString) {
-  console.error('Recuerda que tienes que tener un archivo .env con las variables de entorno definidas y el MONGO_DB_URI que servirá de connection string. En las clases usamos MongoDB Atlas pero puedes usar cualquier base de datos de MongoDB (local incluso).')
-}
-
-// Conection a mongoDB
-mongoose.connect(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-  .then(() => {
-    console.log('Database connected')
-  }).catch(err => {
-    console.log(err)
-  })
-
-process.on('uncaughtException', error => {
-  console.error(error)
-  mongoose.disconnect()
-})
+mongoose.connect(process.env.MONGO_DB_URI)
+.then(()=> console.log('conect to DB'))
+.catch((err)=>console.error(err.message))
 ```
+Existen mejores formas de hacer la conexion con la base de datos, pero por ahora esta nos va a servir.
+
+
 
  Como ya es usual crea una carpeta llamada models
 ```
@@ -151,7 +132,7 @@ mkdir models
 ```
 Dentro de la carpeta models vamos a crear un archivo llamado author.js.js
 ```
-touch models/author.js.js
+touch models/author.js
 ```
 y dentro de author.js.js vamos a poner el siguiente codigo.
 
@@ -169,12 +150,10 @@ const AuthorSchema = new Schema ({
         type:String,
         require: true,
         maxLength:100
-    },
-    date_of_birth: { type: Date },
-    date_of_death: { type: Date },
+    }
 })
 
-module.exports = mongoose.model(AuthorSchema)
+module.exports = mongoose.model('Author', AuthorSchema)
 ```
 Vamos a hacer lo mismo con los modelos de Book model, BookInstance model y Genre model.
 
@@ -186,7 +165,102 @@ Usa como guia la [documentacion de mozzila de express.js](https://developer.mozi
 
 * [Mongoose Schemas (Defining your schema)](https://mongoosejs.com/docs/guide.html#definition)
 
-## Documentación para los controllers
+## Crear un Author 
+Como es usual en nuestra forma de trabajo vamos a realizar el controlador para [crear](https://mongoosejs.com/docs/api/model.html#Model.create()) un author.
+
+```
+mkdir controllers
+touch controllers/author.js
+```
+```
+const Author = require('../models/author')
+
+const controllerAuthor = {
+    create: async (req,res) =>{
+        try{
+            const first_name = req.body.first_name
+            const family_name = req.body.family_name
+            await Author.create({
+                first_name:first_name, 
+                family_name:family_name
+            })
+            res.json({msg:'Created'})
+        } catch(err){
+            return res.status(500).json({msg:err.message})
+        }
+    }
+}
+
+module.exports = controllerAuthor
+```
+vamos a probar la funcion desde el index.js, por lo tanto agregamos el siguiente codigo en las importaciones 
+
+```
+const controllerAuthor = require('./controllers/author')
+
+```
+y despues de la ruta del hola mundo lo siguiente:
+```
+router.post('/api/author/create',controllerAuthor.create)
+```
+
+Y en [postman](https://www.postman.com/) probamos el endpoint como se muestra en la siguiente imagen 
+<img src="img/postmanPostEndPoint.png" alt="postman Post EndPoint">
+
+
+Ahora que ya tenemos el controlador funcionando vamos a hacer la ruta.
+```
+mkdir routes
+touch routes/author.js
+```
+```
+const express =require('express')
+
+const controllerAuthor =require('../controllers/author')
+const router = express.Router()
+
+router.post('/create',controllerAuthor.create)
+
+module.exports = router
+```
+Y en index.js quitamos lo que pusimos para la prueba anterior y ponemos lo siguiente:
+```
+const authorRoutes = require('./routes/author')
+
+app.use(express.json())
+app.use('/api/author',authorRoutes)
+```
+y el resultado final debe ser este 
+```
+const express = require('express')
+const mongoose = require('mongoose')
+
+const authorRoutes = require('./routes/author')
+require('dotenv').config()
+
+const app = express()
+const port = (process.env.PORT || 3005)
+app.set('port', port)
+
+app.use(express.json())
+app.use('/api/author',authorRoutes)
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+mongoose.connect(process.env.MONGO_DB_URI)
+.then(()=> console.log('conect to DB'))
+.catch((err)=>console.error(err.message))
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+```
+Volvemos a usar postman y el resultado debe ser el mismo:
+<img src="img/postmanPostEndPoint.png" alt="postman Post EndPoint">
+
+### Documentación para los controllers
 
 * [Controller](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Book_list_page#controller) Solo mirar la parte del controlador
 ### Algunas query de uso común 
@@ -197,7 +271,7 @@ Usa como guia la [documentacion de mozzila de express.js](https://developer.mozi
 * [Model.create()](https://mongoosejs.com/docs/api/model.html#Model.create())
 * [Model.deleteOne()](https://mongoosejs.com/docs/api/model.html#Model.deleteOne())
 
-## Documentación para los routers
+### Documentación para los routers
 
 * [Documentación Expressjs Router](https://expressjs.com/en/api.html#router)
 * [Documentacion Mozilla.org ](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#routes_primer) Recuerda al momento de llamar el [controlador](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#author_controller) usar lo que esta en la sección de los controladores, es decir las query a la Base de datos que estan en la seccion anterior.

@@ -12,8 +12,8 @@ const AuthorSchema = new Schema ({
         require: true,
         maxLength:100
     },
-    date_of_birth: { type: Date },
-    date_of_death: { type: Date },
+    // date_of_birth: { type: Date },
+    // date_of_death: { type: Date },
 })
 
-module.exports = mongoose.model(AuthorSchema)
+module.exports = mongoose.model('Author', AuthorSchema)
