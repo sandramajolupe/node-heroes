@@ -40,6 +40,9 @@ npm install nodemon --develop
 ```
 
 al final de esta seccion deben tener algo parecido a esto: 
+
+
+
 <img src="img/primeros_pasos.png" alt="estructura de carpetas y archivos al final primeros pasos">
 
 ## Hola Mundo
@@ -343,6 +346,24 @@ router.delete('/delete/:id',controllerAuthor.deleteAuthor)
 
 module.exports = router
 ```
+
+Finalmente probamos los endpoints:
+#### Postman Get Authors
+<img src="img/getAuthors.png" alt="Postman Get Authors">
+
+
+#### Get AutorFor Id
+<img src="img/getAutorForId.png" alt="Postman Get AutorFor Id">
+
+
+#### Update Author
+<img src="img/updateAuthor.png" alt="Postman Update Author">
+
+
+#### Delete Author
+<img src="img/deleteAuthor.png" alt="Postman Delete Author">
+
+
 ### Documentación para los controllers
 
 * [Controller](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Displaying_data/Book_list_page#controller) Solo mirar la parte del controlador
