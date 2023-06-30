@@ -68,8 +68,7 @@ Para levantar el servidor vamos a correr el siguiente comando en una consola al 
 ```
 node index.js
 ```
-Como es usual si van al navegador a la direccion 127.0.0.1:3005 van a encontrar el hola mundo.
-
+Si abren el navegador y escriben la dirección 127.0.0.1:3005, encontrarán el clásico "Hola Mundo".
 
 ## Documentación de MongoDB
 
@@ -125,11 +124,11 @@ mongoose.connect(process.env.MONGO_DB_URI)
 .then(()=> console.log('conect to DB'))
 .catch((err)=>console.error(err.message))
 ```
-Existen mejores formas de hacer la conexion con la base de datos, pero por ahora esta nos va a servir.
+Hay métodos más efectivos para establecer la conexión con la base de datos, pero por ahora esta opción nos será útil.
 
 
 
- Como ya es usual crea una carpeta llamada models
+ El siguiente paso es crear una carpeta llamada models
 ```
 mkdir models
 ```
@@ -137,7 +136,7 @@ Dentro de la carpeta models vamos a crear un archivo llamado author.js.js
 ```
 touch models/author.js
 ```
-y dentro de author.js.js vamos a poner el siguiente codigo.
+Dentro de author.js.js debes escribir el siguiente código.
 
 ```
 const mongoose = require('mongoose')
@@ -158,10 +157,10 @@ const AuthorSchema = new Schema ({
 
 module.exports = mongoose.model('Author', AuthorSchema)
 ```
-Vamos a hacer lo mismo con los modelos de Book model, BookInstance model y Genre model.
+Haremos lo mismo con los modelos de Book model, BookInstance model y Genre model.
 
 
-Usa como guia la [documentacion de mozzila de express.js](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#defining_the_locallibrary_schema)
+Usa cómo guía la [documentacion de mozzila de express.js](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#defining_the_locallibrary_schema)
 
 ### Documentación para los models
 * [Express Tutorial Part 3: Using a Database (Defining and creating models)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#defining_and_creating_models)
@@ -169,7 +168,7 @@ Usa como guia la [documentacion de mozzila de express.js](https://developer.mozi
 * [Mongoose Schemas (Defining your schema)](https://mongoosejs.com/docs/guide.html#definition)
 
 ## Crear autor. 
-Como es habitual en nuestra forma de trabajo, vamos a crear el controlador para la [creación](https://mongoosejs.com/docs/api/model.html#Model.create()) de un autor.
+Siguiendo nuestra metodología de trabajo, procedemos a crear el controlador para la [creación](https://mongoosejs.com/docs/api/model.html#Model.create()) de un autor.
 
 ```
 mkdir controllers
@@ -196,7 +195,7 @@ const controllerAuthor = {
 
 module.exports = controllerAuthor
 ```
-Vamos a probar la función desde el archivo index.js, por lo tanto, agregaremos el siguiente código a las importaciones.
+Para probar la función desde el archivo index.js, añadiremos el siguiente código a nuestras importaciones.
 
 ```
 const controllerAuthor = require('./controllers/author')
