@@ -82,7 +82,7 @@ Van a crear la cuenta, esta es la documentación recomendada para MongoDB, aunqu
 * [Create a Connection String](https://www.mongodb.com/docs/drivers/node/current/quick-start/create-a-connection-string/#create-a-connection-string)
 * [Connect to MongoDB](https://www.mongodb.com/docs/drivers/node/current/quick-start/connect-to-mongodb/)
 
-* [Express Tutorial Part 3: Using a Database (with Mongoose)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#setting_up_the_mongodb_database)
+* [Express Tutorial Part 3: Using a Database (with Mongoose)]c
 
 ## Variables de entorno
 
@@ -203,7 +203,7 @@ const controllerAuthor = require('./controllers/author')
 ```
 Después de la ruta del 'Hola Mundo', puedes agregar el siguiente código en el archivo index.js:
 ```
-router.post('/api/author/create',controllerAuthor.create)
+app.post('/api/author/create',controllerAuthor.create)
 ```
 
 Y en [postman](https://www.postman.com/) probamos el endpoint como se muestra en la siguiente imagen 
