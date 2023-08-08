@@ -1,7 +1,7 @@
 {
-  "name": "expressbasic",
+  "name": "express-super-hero-angular",
   "version": "1.0.0",
-  "description": "Basic API using express and Mongo DB",
+  "description": "Basic API using express and Mongo DB to complete the angular super-hero tutorial",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
