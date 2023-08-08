@@ -1,44 +1,48 @@
-const Author = require('../models/author')
+const hero = require('../models/hero')
+const Hero = require('../models/hero')
 
-const controllerAuthor = {
+const controllerHero = {
     create: async (req,res) =>{
         try{
-            const first_name = req.body.first_name
-            const family_name = req.body.family_name
-            await Author.create({
+            const faction = req.body.faction
+            const hp = req.body.hp
+            await Hero.create({
                 first_name:first_name, 
-                family_name:family_name
+                family_name:faction,
+                hp:hp
             })
             res.json({msg:'Created'})
         } catch(err){
             return res.status(500).json({msg:err.message})
         }
     },
-    getAuthors: async (req,res) =>{
+    getHeroes: async (req,res) =>{
         try{
-            const authors = await Author.find({})
-            res.json(authors)
+            const heros = await Hero.find({})
+            res.json(heros)
         }catch(err){
             return res.status(500).json({msg:err.message})
         }
     },
-    getAuthorForId: async (req,res) =>{
+    getHeroForId: async (req,res) =>{
         try{
             const {id} = req.params
-            const author = await Author.findById(id)
-            res.json(author)
+            const Hero = await Hero.findById(id)
+            res.json(hero)
         }catch(err){
             return res.status(500).json({msg:err.message})
         }
     },
-    updateAuthor: async (req,res) =>{
+    updateHero: async (req,res) =>{
         try{
             const {id} = req.params
             const first_name = req.body.first_name
-            const family_name = req.body.family_name
-            await Author.findByIdAndUpdate(id,{
+            const faction = req.body.faction
+            const hp = req.body.hp
+            await Hero.findByIdAndUpdate(id,{
                 first_name:first_name, 
-                family_name:family_name
+                faction:faction,
+                hp:hp
             })
             res.json({msg:'Update'})
         }catch(err){
@@ -46,10 +50,10 @@ const controllerAuthor = {
             return res.status(500).json({msg:err.message})            
         }
     },
-    deleteAuthor:async (req,res)=>{
+    deleteHero:async (req,res)=>{
         try {
             const {id} = req.params
-            await Author.findByIdAndDelete(id)
+            await Hero.findByIdAndDelete(id)
             res.json({msg:'Delete'})     
         } catch (err) {
             console.error(err)
@@ -59,4 +63,4 @@ const controllerAuthor = {
 
 }
 
-module.exports = controllerAuthor
+module.exports = controllerHero
