@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-const authorRoutes = require('./routes/author')
+const heroRoutes = require('./routes/hero')
 require('dotenv').config()
 
 const app = express()
@@ -9,7 +9,7 @@ const port = (process.env.PORT || 3005)
 app.set('port', port)
 
 app.use(express.json())
-app.use('/api/author',authorRoutes)
+app.use('/api/Hero',heroRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
