@@ -1,14 +1,14 @@
 const express =require('express')
 
-const controllerAuthor =require('../controllers/author')
+const controllerHero =require('../controllers/hero')
 
 const router = express.Router()
 
 
-router.get('/',controllerAuthor.getAuthors)
-router.get('/:id',controllerAuthor.getAuthorForId)
-router.post('/create',controllerAuthor.create)
-router.patch('/update/:id',controllerAuthor.updateAuthor)
-router.delete('/delete/:id',controllerAuthor.deleteAuthor)
-
+router.get('/',controllerHero.getHeroess)
+router.get('/:id',controllerHero.getHeroForId)
+router.post('/create',controllerHero.create)
+router.patch('/update/:id',controllerHero.updateHero)
+router.delete('/delete/:id',controllerHero.deleteHero)
+o
 module.exports = router
